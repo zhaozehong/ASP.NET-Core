@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using OdeToFood.Data;
 
 namespace OdeToFood
 {
@@ -24,10 +25,13 @@ namespace OdeToFood
     // This method gets called by the runtime. Use this method to add services to the container.
     public void ConfigureServices(IServiceCollection services)
     {
+      // registering a Data Service
+      services.AddSingleton<IRestaurantData, InMemoryRestaurantData>();
+
       services.Configure<CookiePolicyOptions>(options =>
       {
-              // This lambda determines whether user consent for non-essential cookies is needed for a given request.
-              options.CheckConsentNeeded = context => true;
+        // This lambda determines whether user consent for non-essential cookies is needed for a given request.
+        options.CheckConsentNeeded = context => true;
         options.MinimumSameSitePolicy = SameSiteMode.None;
       });
 
