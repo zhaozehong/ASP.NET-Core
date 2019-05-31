@@ -16,7 +16,6 @@ namespace OdeToFood.Pages.Restaurants
       _restaurantData = restaurantData;
     }
 
-    public Restaurant Restaurant { get; set; }
     public IActionResult OnGet(int restaurantId)
     {
       Restaurant = _restaurantData.GetById(restaurantId);
@@ -24,6 +23,10 @@ namespace OdeToFood.Pages.Restaurants
         return RedirectToPage("./NotFound");
       return Page();
     }
+
+    public Restaurant Restaurant { get; set; }
+    [TempData]
+    public string Message { get; set; }
 
     private readonly IRestaurantData _restaurantData;
   }
