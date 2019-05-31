@@ -7,7 +7,8 @@ namespace OdeToFood.Data
   // Building a Data Access service
   public interface IRestaurantData
   {
-    IEnumerable<Restaurant> GetAll();
+    IEnumerable<Restaurant> GetRestaurantsByName(string name);
+    Restaurant GetById(int id);
   }
   public class InMemoryRestaurantData : IRestaurantData
   {
@@ -20,9 +21,15 @@ namespace OdeToFood.Data
         new Restaurant{Id = 3, Name = "La Costa", Location = "California", Cuisine = CuisineType.Italian}
       };
     }
-    public IEnumerable<Restaurant> GetAll()
+    public Restaurant GetById(int id)
+    {
+      return _restaurants.FirstOrDefault(p => p.Id == id);
+    }
+
+    public IEnumerable<Restaurant> GetRestaurantsByName(string name = null)
     {
       return from r in _restaurants
+             where string.IsNullOrWhiteSpace(name) || r.Name.StartsWith(name)
              orderby r.Name
              select r;
     }
