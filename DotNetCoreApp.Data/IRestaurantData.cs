@@ -10,6 +10,7 @@ namespace DotNetCoreApp.Data
     Restaurant Add(Restaurant newRestaurant);
     Restaurant Update(Restaurant updatedRestaurant);
     Restaurant Delete(int id);
+    int GetCount();
     int Commit();
   }
 }

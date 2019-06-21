@@ -52,6 +52,11 @@ namespace DotNetCoreApp.Data
       return updatedRestaurant;
     }
 
+    public int GetCount()
+    {
+      return _db.Restaurants.Count();
+    }
+
     private DotNetCoreAppDbContext _db;
   }
 }

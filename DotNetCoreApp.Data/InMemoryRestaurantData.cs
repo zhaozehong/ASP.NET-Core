@@ -58,6 +58,11 @@ namespace DotNetCoreApp.Data
       return 0;
     }
 
+    public int GetCount()
+    {
+      return _restaurants.Count;
+    }
+
     public readonly List<Restaurant> _restaurants;
   }
 }
